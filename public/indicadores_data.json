@@ -1,0 +1,472 @@
+{
+    "SINIA": {
+        "nombre": "SINIA",
+        "institución": "Ministerio del Medio Ambiente",
+        "subdivisión": "",
+        "descripción": "Portal del sistema nacional del información ambiental. En el portal es posible encontrar datos sobre los Informes y Reportes del Estado del Medio Ambiente, Estudios realizados por el MMA, IDE MME (Información Geoespacial) y Regulación Ambiental.",
+        "organismo": "Público",
+        "categorias": "Aire, Cambio Climático, Agua, Biodiversidad, Economía circular, Oceános, Fuerzas motrices, Institucionalidad Ambiental, Género,  Suelos",
+        "secciones": [
+            {
+                "Sección Portal": "General",
+                "url": "https://sinia.mma.gob.cl/ ",
+                "formatos": "PDF,  Excel, CSV, Shapefile, XLSX, Geodatabase"
+            },
+            {
+                "Sección Portal": "Estado del Medio Ambiente",
+                "url": "https://sinia.mma.gob.cl/estado-del-medio-ambiente/",
+                "formatos": "PDF,  XLSX"
+            },
+            {
+                "Sección Portal": "Estudios Ambientales",
+                "url": "https://sinia.mma.gob.cl/estudios-ambientales/",
+                "formatos": "PDF"
+            },
+            {
+                "Sección Portal": "Visor de Mapas IDE",
+                "url": "https://arcgis.mma.gob.cl/portal/apps/experiencebuilder/experience/?id=66313389ab534335a4662503350d82cf&draft=true",
+                "formatos": "Geodatabase, Shapefile, Excel"
+            },
+            {
+                "Sección Portal": "Regulación Ambiental",
+                "url": "https://sinia.mma.gob.cl/normativa-regulacion/normas-y-leyes/",
+                "formatos": "PDF"
+            }
+        ]
+    },
+    "SINCA": {
+        "nombre": "SINCA",
+        "institución": "Ministerio del Medio Ambiente",
+        "subdivisión": "",
+        "descripción": "Portal del ministerio del medio ambiente. En el portal es posible encontrar datos sobre las concentraciones ambientales de los contaminantes atmosféricos actualmente normados en Chile, asociados a los niveles de concentración que originan situaciones de emergencia ambiental.",
+        "organismo": "Público",
+        "categorias": "Aire",
+        "secciones": [
+            {
+                "Sección Portal": "General",
+                "url": "https://sinca.mma.gob.cl/",
+                "formatos": "PDF, CSV"
+            }
+        ]
+    },
+    "INE": {
+        "nombre": "INE",
+        "institución": "INE",
+        "subdivisión": "",
+        "descripción": "Portal del instituto nacional de estadística. En este portal es posible encontrar datos sobre variables básicas ambientales y estadísticas ambientales (aire, agua, biodiversidad, tierra y suelos). ",
+        "organismo": "Público",
+        "categorias": "Aire, Agua, Biodiversidad, Fuerzas Motrices, Institucionalidad Ambiental, Género, Suelos",
+        "secciones": [
+            {
+                "Sección Portal": "General",
+                "url": "https://www.ine.gob.cl/",
+                "formatos": "PDF, XLSX, CSV, XML, SVG, TIFF, GIFF, JPG"
+            },
+            {
+                "Sección Portal": "Estadística por temática",
+                "url": "https://www.ine.gob.cl/estadisticas/",
+                "formatos": "PDF, XLSX, CSV"
+            },
+            {
+                "Sección Portal": "Portal de Mapas",
+                "url": "https://www.ine.gob.cl/herramientas/portal-de-mapas",
+                "formatos": "PDF, XLSX, GIF, JPG, SVG, TIFF"
+            }
+        ]
+    },
+    "CEDEUS": {
+        "nombre": "CEDEUS",
+        "institución": "Pontificia Universidad Católica de Chile",
+        "subdivisión": "",
+        "descripción": "Portal de la Pontificia Universidad Catolica de Chile. En ese portal se puede encontrar datos sobre vulnerabilidad ambiental, material pedagógico \"El agua de tu Territorio\", Datos CEDEUS e Indicadores de Sustentabilidad urbana",
+        "organismo": "Academia",
+        "categorias": "Aire, Fuerzas Motrices",
+        "secciones": [
+            {
+                "Sección Portal": "General",
+                "url": "https://www.cedeus.cl/",
+                "formatos": "PDF"
+            },
+            {
+                "Sección Portal": "Indicadores",
+                "url": "http://indicadores.cedeus.cl/",
+                "formatos": "Solo visualización"
+            }
+        ]
+    },
+    "CHONOS": {
+        "nombre": "CHONOS",
+        "institución": "Ministerio de Economía, Fomento y Turismo",
+        "subdivisión": "Subsecretaria de Pesca y Acuicultura",
+        "descripción": "Portal del sistema de información oceanográfica. CHONOS es un sistema de información oceanográfica perteneciente al grupo de oceanografía y clima asociado al Centro de investigación Putemún en sistemas costeros de la Patagonia. Aquí es posible encontrar datos de modelos de pronóstico operacional oceanográfico y atmósferico, modelo de pronóstico de dispersión de partículas, información oceanógráfica histórica basada en modelos numéricos, estadísticas y matrices de conectividad de modelos biofísicos, modelo hidrológico de caudales de alta resolución, red de monitorio metereológico en tiempo real, catálogo virtual de mediciones de campañas oceanográficas y una biblioteca de información complementaria de CHONOS.",
+        "organismo": "Público",
+        "categorias": "Océanos",
+        "secciones": [
+            {
+                "Sección Portal": "General",
+                "url": "https://chonos.ifop.cl/",
+                "formatos": "PNG, JPEG, PDF, SVG, CSV, XLSX"
+            }
+        ]
+    },
+    "(CR)^2": {
+        "nombre": "(CR)^2",
+        "institución": "Universidad de Chile",
+        "subdivisión": "",
+        "descripción": "Portal de la universidad de Chile. En este portal se puede encontrar un explorador climático que cuenta con distintas variables (t° máximas, mínimas, precipitaciones mensuales, caudales, etc.),  un explorador de cuencas hidrográficas, atlas de sequías de sudamérica, explorador de calidad del aire, olas de calor, precipitaciones, observatorio de nieve de los Andes de Argentina y Chile, plataforma costera, plataforma de sequías y seguridad hídrica y una plataforma de simulaciones climáticas.",
+        "organismo": "Academia",
+        "categorias": "Agua, Aire, Cambio Climático, ",
+        "secciones": [
+            {
+                "Sección Portal": "General",
+                "url": "https://www.cr2.cl/",
+                "formatos": "XLSX, CSV, MatLab, Shapefile, JSON, PDF, SVG"
+            }
+        ]
+    },
+    "Terram": {
+        "nombre": "Terram",
+        "institución": "Fundación Terram",
+        "subdivisión": "",
+        "descripción": "En el portal de la Fundación Terram se proporciona información sobre temas ambientales, como biodiversidad, cambio climático, energía y recursos naturales.",
+        "organismo": "ONG",
+        "categorias": "Aire, Cambio Climático, Agua, Biodiversidad, Oceános, Fuerzas motrices, Institucionalidad Ambiental, Género, Suelos",
+        "secciones": [
+            {
+                "Sección Portal": "General",
+                "url": "https://www.terram.cl/",
+                "formatos": "PDF"
+            }
+        ]
+    },
+    "Geoportal Ciencia Austral de Chile": {
+        "nombre": "Geoportal Ciencia Austral de Chile",
+        "institución": " Nodo Ciencia Austral y Nodo Laboratorio Natural Subantártico",
+        "subdivisión": "",
+        "descripción": "En esta plataforma es posible encontrar recursos geoespaciales (capas geográficas y mapas web), documentos, bases de datos, archivos audiovisuales e infografías que contribuyen a la ciencia y el conocimiento de la macrozona austral de Chile. Tiene un enfoque de \"datos abiertos\", permitiendo a los usuarios descubrir, visualizar e interactuar con información relevante para la investigación, la sociedad y el territorio.",
+        "organismo": "Academia",
+        "categorias": "Cambio Climático, Biodiversidad, Fuerzas Motrices, Suelos, Océanos",
+        "secciones": [
+            {
+                "Sección Portal": "General",
+                "url": "https://geoportalcienciaaustral-ciep.hub.arcgis.com/",
+                "formatos": "PDF, CSV, KML, GeoJSON, Shapefile"
+            },
+            {
+                "Sección Portal": "Datos",
+                "url": "https://geoportalcienciaaustral-ciep.hub.arcgis.com/pages/datos",
+                "formatos": "CSV, KML, Shapefile, GeoJSON"
+            },
+            {
+                "Sección Portal": "Visualizadores",
+                "url": "https://experience.arcgis.com/experience/73e5562360dc4f739ab8d2f5e5209147/",
+                "formatos": "Solo visualización"
+            }
+        ]
+    },
+    "Observatorio Ambiental UC": {
+        "nombre": "Observatorio Ambiental UC",
+        "institución": "Pontificia Universidad Católica de Chile",
+        "subdivisión": "",
+        "descripción": "Portal de la Pontificia Universidad Católica de Chile. Este observatorio ambiental funciona como una plataforma piloto que integra datos públicos ambientales. Cuenta con distintos indicadores como: emosiones de contaminantes al agua, emisiones de contaminantes al aire, emisiones de gases de efectos invernadero, usos de agua, cumplimiento ambiental, residuos peligrosos, tamaño y ubicación de relaves, conflictividad de proyectos, superficie intervenida por la actividad minera y actividades de gestión ambiental. Con un enfoque centrado en los desafíos asociados a la industria minera en las regiones de Valparaíso y Metropolitana.",
+        "organismo": "Academia",
+        "categorias": "Agua, Aire, ",
+        "secciones": [
+            {
+                "Sección Portal": "General",
+                "url": "https://observatorioambientaluc.cl/",
+                "formatos": "PDF, PNG"
+            }
+        ]
+    },
+    "Dirección General de Aguas": {
+        "nombre": "Dirección General de Aguas",
+        "institución": "Ministerio de Obras Públicas",
+        "subdivisión": "",
+        "descripción": "Portal del ministerio de obras públicas. En el portal es posible encontrar información de recursos hídricos (boletines hidrológicos y pronósticos anuales, estadísticas estaciones DGA, sistema hidrométrico en línea, catástro público de aguas, entre otros.) y organizaciones de usuarios.",
+        "organismo": "Público",
+        "categorias": "Agua, Institucionalidad Ambiental",
+        "secciones": [
+            {
+                "Sección Portal": "General",
+                "url": "https://dga.mop.gob.cl/Paginas/default.aspx",
+                "formatos": "Shapefile, PDF, Excel, XLSX"
+            }
+        ]
+    },
+    "LBP": {
+        "nombre": "LBP",
+        "institución": "Ministerio del Medio Ambiente",
+        "subdivisión": "",
+        "descripción": "Portal del ministerio del medio ambiente. En el portal es posible encontrar una descripción detallada de los elementos del medio ambiente de un territorio. Cuenta con tres ejes principales: datos abiertos, estadística de Lineas de Base Públicas y un visor de mapas",
+        "organismo": "Público",
+        "categorias": "Aire, Cambio Climático, Agua, Biodiversidad, Océanos, Fuerzas motrices, Suelos",
+        "secciones": [
+            {
+                "Sección Portal": "General",
+                "url": "https://lineasdebasepublicas.mma.gob.cl/",
+                "formatos": "JPG, PNG, PDF, Shapefile, SVG, CSV, XLSX, TIFF, GIF"
+            },
+            {
+                "Sección Portal": "Datos abiertos LBP",
+                "url": "https://lineasdebasepublicas.mma.gob.cl/datos_abiertos",
+                "formatos": "GeoJSON, shapefile, CSV, XLSX"
+            },
+            {
+                "Sección Portal": "Estadísticas LBP",
+                "url": "https://lineasdebasepublicas.mma.gob.cl/estadisticas-lbp",
+                "formatos": "JPG, PNG, PDF"
+            },
+            {
+                "Sección Portal": "Visor de Mapas LBP",
+                "url": "https://lineasdebasepublicas.mma.gob.cl/visor-mapas",
+                "formatos": "TIFF, GIF, JPG, PDF, SVG, PNG"
+            }
+        ]
+    },
+    "IDEMBN": {
+        "nombre": "IDEMBN",
+        "institución": "Ministerio de Bienes Nacionales",
+        "subdivisión": "",
+        "descripción": "La infraestructura de datos geoespaciales del Ministerio de Bienes Nacionales funciona como una herramienta de gestión de información geoespacial. En este portal se puede encontrar información que corresponde a propiedad fiscal administrada, bienes nacionales protegidos, rutas patrimoniales y propiedad fiscal SNASPE.",
+        "organismo": "Público",
+        "categorias": "Biodiversidad",
+        "secciones": [
+            {
+                "Sección Portal": "General",
+                "url": "https://ide.bienes.cl/",
+                "formatos": "Shapefile, visor"
+            },
+            {
+                "Sección Portal": "Catálogo",
+                "url": "https://idembn.bienes.cl/catalog",
+                "formatos": "Shapefile, visor"
+            },
+            {
+                "Sección Portal": "Visor de Mapas",
+                "url": "https://idembn.bienes.cl/idembn/map/23?zoom=4.6650343182664&center=-7906676.828330853%2C-4728980.669817237",
+                "formatos": "Solo visualización"
+            }
+        ]
+    },
+    "GEOMOP": {
+        "nombre": "GEOMOP",
+        "institución": "Ministerio de Obras Públicas",
+        "subdivisión": "",
+        "descripción": "Portal del ministerio de obras públicas. El portal cuenta con visores de mapas del portal GEOMOP, dentro de estos visores se encuentra el observatorio del agua, servicios sanitarios rurales, colectores de aguas lluvias, entre otros.",
+        "organismo": "Público",
+        "categorias": "Agua",
+        "secciones": [
+            {
+                "Sección Portal": "General",
+                "url": "https://ide.mop.gob.cl/geomop/",
+                "formatos": "Solo visualización"
+            }
+        ]
+    },
+    "IDE MINAGRI": {
+        "nombre": "IDE MINAGRI",
+        "institución": "Ministerio de Agricultura",
+        "subdivisión": "",
+        "descripción": "Portal del ministerio de agricultura. En este portal es posible encontrar un visualizador de información geoespacial (se puede encontrar información acerca de ecosistemas), una búsqueda de metadatos en un catálogo web (información sobre medio ambiente, biota, atmósfera, meteorología, información geocientífica, entre otros), acceso a servicio de mapas OGC (información acerca de agroclima, suelos,  humedales, erosión, entre otros),",
+        "organismo": "Público",
+        "categorias": "Biodiversidad, Suelos",
+        "secciones": [
+            {
+                "Sección Portal": "General",
+                "url": "https://ide.minagri.gob.cl/geoweb/",
+                "formatos": "ZIP, PDF, XML, Shapefile"
+            },
+            {
+                "Sección Portal": "Visualizador de Mapas",
+                "url": "https://esri.ciren.cl/portal/apps/sites/#/ideminagri",
+                "formatos": "Solo visualización"
+            },
+            {
+                "Sección Portal": "Catálogo web",
+                "url": "https://ide.minagri.gob.cl/geonetwork/srv/spa/catalog.search#/home",
+                "formatos": "ZIP, PDF, XML, RDF, Shapefile"
+            },
+            {
+                "Sección Portal": "Reportes Estadísticos de IDE Minagri",
+                "url": "https://reportes-estadisticos-ide-minagri-esri-ciren.hub.arcgis.com/",
+                "formatos": "Solo visualización"
+            }
+        ]
+    },
+    "IDE GORE AYSÉN": {
+        "nombre": "IDE GORE AYSÉN",
+        "institución": "IDE",
+        "subdivisión": "",
+        "descripción": "Portal de la Coordinación Regional de Infraestructura de Datos Geoespaciales (IDE) de Aysén. En este portal se encuentra información del borde costero, cartas de inundación por tsunami, áreas marinas costeras protegidas y macrozonificación.",
+        "organismo": "Público",
+        "categorias": "Agua, Océanos, Fuerzas Motrices, Institucionalidad Ambiental",
+        "secciones": [
+            {
+                "Sección Portal": "General",
+                "url": "https://ide.goreaysen.cl/index.php",
+                "formatos": "PDF, rar, XLSX, Kmz, Shapefile"
+            }
+        ]
+    },
+    "IDE-SUBPESCA GEOPORTAL": {
+        "nombre": "IDE-SUBPESCA GEOPORTAL",
+        "institución": "Ministerio de Economía, Fomento y Turismo",
+        "subdivisión": "Subsecretaria de Pesca y Acuicultura",
+        "descripción": "Este portal presenta información territorial administrada por la subsecretaría de pesca y acuicultura a nivel nacional y en sus direcciones zonales. Se puede incontrar información sobre acuicultura, recursos bentónicos, conservación y biodiversidad, caletas pesqueras artesanales,  espacios costeros marinos y programas de monitoreo.",
+        "organismo": "Público",
+        "categorias": "Agua, Océanos, Biodiversidad, Fuerzas motrices",
+        "secciones": [
+            {
+                "Sección Portal": "General",
+                "url": "https://geoportal.subpesca.cl/portal/apps/sites/#/geoportal",
+                "formatos": "Shapefile, KMZ, Ficha de Metadatos"
+            },
+            {
+                "Sección Portal": "Acuicultura",
+                "url": "https://geoportal.subpesca.cl/portal/apps/sites/#/geoportal/pages/acuicultura",
+                "formatos": "Shapefile, kmz, Ficha de Metadatos"
+            },
+            {
+                "Sección Portal": "Recursos Bentónicos",
+                "url": "https://geoportal.subpesca.cl/portal/apps/sites/#/geoportal/pages/rrbb",
+                "formatos": "Shapefile, kmz, Ficha de Metadatos"
+            },
+            {
+                "Sección Portal": "Programas de Monitoreo",
+                "url": "https://geoportal.subpesca.cl/portal/apps/sites/#/geoportal/pages/plagas",
+                "formatos": "Shapefile, Ficha de metadatos"
+            },
+            {
+                "Sección Portal": "Conservación y Biodiversidad",
+                "url": "https://geoportal.subpesca.cl/portal/apps/sites/#/geoportal/pages/amp",
+                "formatos": "Shapefile, kmz, Ficha de Metadatos"
+            }
+        ]
+    },
+    "SIGEX": {
+        "nombre": "SIGEX",
+        "institución": "Ministerio de Minería",
+        "subdivisión": "Servicio Nacional de Geología y Minería",
+        "descripción": "SIGEX es una plataforma del Servicio Nacional de Geología y Minería y funciona como un visor de mapas que permite acceder de una forma dinámica y en formato geoespacial. Dentro de su contenido se encuentra información como: Geología básica, teledetección (monitoreo metereológico satelital), geopatrimonio, peligros geológicos (SIGMA, SIGAS, Mapa de peligro de remociones en masa de tipo flujo, peligros volcánicos, minuta técnica por precipitaciones), recursos minerales (SIGEX, salares, SIA yacimientos), geoquímica y catastro minero. ",
+        "organismo": "Público",
+        "categorias": "Biodiversidad, Suelos",
+        "secciones": [
+            {
+                "Sección Portal": "",
+                "url": "https://experience.arcgis.com/template/38dbe7203f314d22b8392953c056f16c?block_id=layout_155_block_15",
+                "formatos": "GIF, JPG, PDF, SVG, SVGZ, TIFF, AIX, EPS"
+            }
+        ]
+    },
+    "Mira tu Territorio": {
+        "nombre": "Mira tu Territorio",
+        "institución": "Ministerio de Bienes Nacionales",
+        "subdivisión": "",
+        "descripción": "A través de esta plataforma, se puede acceder a datos geoespaciales, mapas interactivos y recursos que ayudan a comprender la realidad socioeconómica y territorial de las comunidades. Dentro de su contenido se encuentra información como: Incendios Forestales 2024, Emergencia hidrometeorológica, sequía, parques nacionales, entre otros.",
+        "organismo": "ONG",
+        "categorias": "Fuerzas motrices, Agua, Biodiversidad",
+        "secciones": [
+            {
+                "Sección Portal": "General",
+                "url": "https://www.miratuterritorio.cl/#page-top",
+                "formatos": "Solo visualización"
+            },
+            {
+                "Sección Portal": "Incendios Forestales",
+                "url": "https://idembn.bienes.cl/emergenciaseremi/dashboard/1028",
+                "formatos": "Solo visualización"
+            },
+            {
+                "Sección Portal": "Emergencia Hidrometeorológica",
+                "url": "https://www.arcgis.com/apps/dashboards/3408a064339249a6bc77b82d4a3dd1e0",
+                "formatos": "Solo visualización"
+            },
+            {
+                "Sección Portal": "Sequía",
+                "url": "https://sequia.visorterritorial.cl/",
+                "formatos": "Solo visualización"
+            },
+            {
+                "Sección Portal": "Parques Nacionales",
+                "url": "https://parques.miratuterritorio.cl/",
+                "formatos": "Solo visualización"
+            }
+        ]
+    },
+    "RETC": {
+        "nombre": "RETC",
+        "institución": "Ministerio del Medio Ambiente",
+        "subdivisión": "",
+        "descripción": "Portal del Ministerio del Medio Ambiente. En esta plataforma es posible encontrar información relacionada con emisiones y tranferencias de contaminantes debido a a ctividades industriales y comerciales.",
+        "organismo": "Público",
+        "categorias": "Aire, Agua, Economía circular",
+        "secciones": [
+            {
+                "Sección Portal": "Datos Abiertos RETC",
+                "url": "https://datosretc.mma.gob.cl/group",
+                "formatos": "CSV, Excel"
+            }
+        ]
+    },
+    "SINFA": {
+        "nombre": "SINFA",
+        "institución": "Superintendencia del Medio Ambiente",
+        "subdivisión": "",
+        "descripción": "Portal de la Superintendencia del Medio Ambiente. En este portal es posible encontrar información con respecto a datos de fiscalización ambiental, seguimiento de cumplimiento y sanciones, planes de prevención y/o descontaminación, entre otros.",
+        "organismo": "Público",
+        "categorias": "Aire, Agua, Institucionalidad ambiental",
+        "secciones": [
+            {
+                "Sección Portal": "Datos Abiertos SMA",
+                "url": "https://snifa.sma.gob.cl/DatosAbiertos",
+                "formatos": "CSV, Excel"
+            }
+        ]
+    },
+    "ARClim": {
+        "nombre": "ARClim",
+        "institución": "Ministerio del Medio Ambiente",
+        "subdivisión": "",
+        "descripción": "El atlas de Riesgos Climáticos para Chile, es un proyecto del Ministerio del Medio Ambiente. En este portal se podrá encontrar información como mapas de riesgos, amenaza y exposición, un explorador de amenaza climática, mapas de especies, entre otros.",
+        "organismo": "Público",
+        "categorias": "Aire, Cambio Climático, Agua, Biodiversidad, Océanos, Fuerzas Motrices, Tierra o Suelos",
+        "secciones": [
+            {
+                "Sección Portal": "General",
+                "url": "https://arclim.mma.gob.cl/",
+                "formatos": "Excel, GeoJSON, XLSX, PDF, PNG, TIFF"
+            },
+            {
+                "Sección Portal": "Explorador de Amenazas",
+                "url": "https://arclim.mma.gob.cl/features/explorador_amenazas_v2/",
+                "formatos": "XLSX, GeoJSON, PDF, PNG"
+            },
+            {
+                "Sección Portal": "Mapas de Especies",
+                "url": "https://arclim.mma.gob.cl/biodiversity/home/",
+                "formatos": "TIFF"
+            }
+        ]
+    },
+    "Dirección meteorológica de Chile": {
+        "nombre": "Dirección meteorológica de Chile",
+        "institución": "Dirección General de Aeronáutica Civil",
+        "subdivisión": "",
+        "descripción": "Portal de la Dirección General de Aeronáutica Civil. En este portal se puede encontrar información sobre meteorología básica, climatología, cambio climático, estaciones en línea, imágenes satelitáles, entre otros.",
+        "organismo": "Público",
+        "categorias": "Agua, Cambio Climático",
+        "secciones": [
+            {
+                "Sección Portal": "General",
+                "url": "https://www.meteochile.gob.cl/PortalDMC-web/index.xhtml#",
+                "formatos": "PDF, PNG, SVG, Excel"
+            },
+            {
+                "Sección Portal": "Cambio Climático",
+                "url": "https://climatologia.meteochile.gob.cl/application/index/menuTematicoCambioClimatico",
+                "formatos": "PDF, PNG, SVG, Excel"
+            }
+        ]
+    }
+}

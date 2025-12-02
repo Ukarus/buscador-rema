@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vite App</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- <link rel="stylesheet" href="/public/capa_css.css"> -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <link rel="stylesheet" href="buscador_rema.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+  <!-- <div id="app"></div> -->
+  <div class="container">
+    <div x-data="indicadores" class="bg-white">
+
+      <head>
+        <title>Estadísticas LBP</title>
+      </head>
+
+      <div class="d-flex justify-content-between px-4">
+        <a href="https://mma.gob.cl/" target="_blank">
+          <img src="https://lineasdebasepublicas.mma.gob.cl/images/mma_logo.png" alt="LBP logo" class="img-fluid"
+            style="width: 130px; height: 122px;" />
+        </a>
+        <a class="align-self-center" href="https://sinia.mma.gob.cl/" target="_blank">
+          <img decoding="async" className="alignnone size-medium wp-image-2402 mb-0"
+            src="https://sinia.mma.gob.cl/wp-content/uploads/2022/07/logo-sinia.png" alt="Sinia" width="400"
+            srcSet="https://sinia.mma.gob.cl/wp-content/uploads/2022/07/logo-sinia.png 1500w, https://sinia.mma.gob.cl/wp-content/uploads/2022/07/logo-sinia-300x40.png 300w, https://sinia.mma.gob.cl/wp-content/uploads/2022/07/logo-sinia-1024x137.png 1024w, https://sinia.mma.gob.cl/wp-content/uploads/2022/07/logo-sinia-768x102.png 768w"
+            sizes="(max-width: 1500px) 100vw, 1500px" />
+        </a>
+      </div>
+
+      <section class="container" id="capa-section">
+          <!-- Filtros -->
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <div class="input-group mb-4">
+                <span class="input-group-text">🔍</span>
+                <div class="form-floating">
+                  <input type="text" class="form-control" id="floatingInputGroup1" placeholder="Buscar por Indicador..."
+                    x-model="query">
+                  <label for="floatingInputGroup1">Buscar por indicador </label>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-2">
+              <div class="">
+                <label for="pageSizeSelect" class="form-label mb-0">Elementos por página:</label>
+                <select class="form-select" id="pageSizeSelect" x-model.number="page.pageSize" @change="page.currentPage = 1">
+                  <option value="5">5</option>
+                  <option value="10">10</option>
+                  <option value="15">15</option>
+                  <option value="20">20</option>
+                  <option value="50">50</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="row gy-4" id="indicadores-lista">
+            <template x-for="(item, k) in filteredItems.slice((page.currentPage - 1) * page.pageSize, page.currentPage * page.pageSize)" :key="`indicador_panel_${k}`">
+              <div class="col-12 col-md-4 col-lg-4 d-flex">
+                <div class="card h-100 w-100 bg-light border-secondary">
+                  <div class="card-body d-flex flex-column">
+                    <h3 class="card-title" x-text="item.Nombre"></h3>
+
+                    <div class="mb-3 flex-grow-1">
+                      <div class="row">
+                        <div class="col">
+                          <div class="d-flex flex-row">
+                            <span :class="iconMap[item.Tipo]"></span>
+                            <p x-text="item.Tipo" class="ms-2 mb-0"> </p>
+                          </div>
+                          <div class="d-flex flex-row">
+                            <span :class="iconMap[item.Capítulo]"></span>
+                            <p x-text="item.Capítulo" class="ms-2 mb-0"> </p>
+                          </div>
+                          <div>
+
+
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="d-flex flex-row align-items-center">
+                      <span class="bi bi-tags-fill"></span>
+                      <template x-for="(cat, i) in (item.Categoría || '').split(',')" :key="`cat_${i}`">
+                        <span :class="`badge rounded-pill text-bg-${['success','danger','warning','info'][i % 4]} mx-1 my-1`" x-text="cat.trim()"></span>
+                      </template>
+                    </div>
+
+                    <div class="mt-auto">
+                      <button type="button" class="btn btn-success w-100" @click="onClickIndicador(item)">Ver
+                        Indicador</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </template>
+          </div>
+
+          <div class="row">
+            <div class="col-12 d-flex justify-content-center my-4">
+              <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                  <li class="page-item" :class="{ disabled: page.currentPage === 1 }">
+                    <a class="page-link" href="#" aria-label="Previous" @click.prevent="if(page.currentPage > 1) page.currentPage--">
+                      <i class="bi bi-chevron-double-left"></i>
+                    </a>
+                  </li>
+                  <template x-for="pageNum in totalPages" :key="pageNum">
+                    <li class="page-item" :class="{ active: page.currentPage === pageNum }">
+                      <a class="page-link" href="#" @click.prevent="page.currentPage = pageNum" x-text="pageNum"></a>
+                    </li>
+                  </template>
+                  <li class="page-item" :class="{ disabled: page.currentPage >= totalPages }">
+                    <a class="page-link" href="#" aria-label="Next" @click.prevent="if(page.currentPage < totalPages) page.currentPage++">
+                      <i class="bi bi-chevron-double-right"></i>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+      </section>
+
+
+      <div class="modal modal-lg" id="myModal" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-body justify-content-center" id="modal-body">
+            </div>
+            <div class="modal-footer border-none ">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/minisearch@7.2.0/dist/umd/index.min.js"></script>
+
+  <script src="app.js"></script>
+</body>
+
+</html>

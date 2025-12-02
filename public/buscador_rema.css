@@ -1,0 +1,17 @@
+.responsive-iframe {
+    /* Extra small devices (phones, 600px and down) */
+    @media only screen and (max-width: 576px) {
+    /* CSS rules */
+    width: 100% !important;
+    height: 400px !important;
+    }
+
+    /* Small devices (portrait tablets and large phones, 600px and up) */
+    @media only screen and (min-width: 577px) {
+        /* CSS rules */
+        width: 100% !important;
+        height: 500px !important;
+    }
+
+    
+}
