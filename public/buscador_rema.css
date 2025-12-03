@@ -11,7 +11,9 @@
         /* CSS rules */
         width: 100% !important;
         height: 500px !important;
-    }
+    }   
+}
 
-    
+.fs-7 {
+    font-size: 0.875rem !important;
 }

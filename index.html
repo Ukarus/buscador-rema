@@ -13,21 +13,14 @@
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
   <link rel="stylesheet" href="buscador_rema.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/tom-select@2.4.3/dist/css/tom-select.css" rel="stylesheet">
 </head>
 
 <body>
   <div class="container-fluid">
     <div x-data="indicadores" >
-
-      <head>
-        <title>Estadísticas LBP</title>
-      </head>
-
-      
-
       <section id="capa-section">
-          <!-- Filtros -->
-          <div class="row">
+          <div class="row ">
             <div class="col-12 col-md-6">
               <div class="input-group mb-4">
                 <span class="input-group-text">🔍</span>
@@ -39,40 +32,66 @@
               </div>
             </div>
             <div class="col-12 offset-0 offset-md-4 col-md-2">
-              <div class="">
-                <label for="pageSizeSelect" class="form-label mb-0">Elementos por página:</label>
-                <select class="form-select w-50" id="pageSizeSelect" x-model.number="page.pageSize" @change="page.currentPage = 1">
-                  <option value="5">5</option>
-                  <option value="10">10</option>
-                  <option value="15">15</option>
-                  <option value="20">20</option>
-                  <option value="50">50</option>
-                </select>
-              </div>
+              <label for="pageSizeSelect" class="form-label fw-medium mb-0 fs-7">Elementos por página:</label>
+              <select class="form-select w-75" id="pageSizeSelect" x-model.number="page.pageSize" @change="page.currentPage = 1">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+              </select>
+            </div>
+          </div>
+          
+          <!-- Filtros -->
+          <div class="row">
+            <div class="col d-flex flex-column flex-wrap mb-4">
+              <span class="me-2 align-self-center fw-medium">Tipo:</span>
+              <select id="select-type" x-model="filters.type" @change="onChangeFilterType" name="type[]" multiple placeholder="Seleccione un Tipo..." autocomplete="off">
+                <option disabled>Seleccione un Tipo...</option>  
+                <option value="Mapa">Mapa</option>
+                <option value="Texto">Texto</option>
+                <option value="Indicador">Indicador</option>
+              </select>
+            </div>
+            <div class="col d-flex flex-column flex-wrap mb-4">
+              <span class="me-2 align-self-center fw-medium">Capítulo:</span>
+              <select id="select-chapter" x-model="filters.chapter" name="chapter[]" multiple placeholder="Seleccione un Capítulo..." autocomplete="off">
+                <option disabled>Seleccione un Capítulo...</option>  
+                <option value="Economía Circular">Economía Circular</option>
+              </select>
+            </div>
+            <div class="col d-flex flex-column flex-wrap mb-4">
+              <span class="me-2 align-self-center fw-medium">Etiquetas:</span>
+              <select id="select-tags" x-model="filters.tags" name="tags[]" multiple placeholder="Seleccione una Etiqueta..." autocomplete="off">
+                <option disabled>Seleccione una Etiqueta...</option>  
+                <!-- Clave, ODS, RETC, TSEJ -->
+                <option value="Clave">Clave</option>
+                <option value="ODS">ODS</option>
+                <option value="RETC">RETC</option>
+                <option value="TSEJ">TSEJ</option>
+              </select>
             </div>
           </div>
 
           <div class="row gy-4" id="indicadores-lista">
             <template x-for="(item, k) in filteredItems.slice((page.currentPage - 1) * page.pageSize, page.currentPage * page.pageSize)" :key="`indicador_panel_${k}`">
-              <div class="col-12 col-md-4 col-lg-4 d-flex">
+              <div class="col-12 col-md-6 d-flex">
                 <div class="card h-100 w-100 bg-light border-secondary">
                   <div class="card-body d-flex flex-column">
-                    <h3 class="card-title" x-text="item.Nombre"></h3>
-
-                    <div class="mb-3 flex-grow-1">
-                      <div class="row">
-                        <div class="col">
-                          <div class="d-flex flex-row">
-                            <span :class="iconMap[item.Tipo]"></span>
-                            <p x-text="item.Tipo" class="ms-2 mb-0"> </p>
-                          </div>
-                          <div class="d-flex flex-row">
-                            <span :class="iconMap[item.Capítulo]"></span>
-                            <p x-text="item.Capítulo" class="ms-2 mb-0"> </p>
-                          </div>
-                          <div>
-
-
+                    <h4 class="card-title" x-text="item.Nombre"></h4>
+                        <div class="mb-2 flex-grow-1">
+                          <div class="row">
+                            <div class="col">
+                              <div class="d-flex flex-row">
+                                <span :class="iconMap[item.Tipo]"></span>
+                                <p x-text="item.Tipo" class="ms-2 mb-0 fs-7"> </p>
+                              </div>
+                              <div class="d-flex flex-row">
+                                <span :class="iconMap[item.Capítulo]"></span>
+                                <p x-text="item.Capítulo" class="ms-2 mb-0 fs-7"> </p>
+                              </div>
+                            <div>
                           </div>
 
                         </div>
@@ -86,8 +105,8 @@
                       </template>
                     </div>
 
-                    <div class="mt-auto">
-                      <button type="button" class="btn btn-success w-100" @click="onClickIndicador(item)">Ver
+                    <div class="mt-1">
+                      <button type="button" class="btn btn-sm btn-success w-100" @click="onClickIndicador(item)">Ver
                         Indicador</button>
                     </div>
                   </div>
@@ -142,6 +161,7 @@
     crossorigin="anonymous"></script>
   <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/minisearch@7.2.0/dist/umd/index.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tom-select@2.4.3/dist/js/tom-select.complete.min.js"></script>
 
   <script>
        const EXCEL_URL = '/Modelo.xlsx';
@@ -190,6 +210,11 @@
           title: '',
           embedSrc: '',
         },
+        filters: {
+          type: [],
+          chapter: [],
+          tags: [],
+        },
         iconMap: {
           'Mapa': 'bi bi-map',
           'Texto': 'bi bi-file-text',
@@ -214,13 +239,37 @@
               ...item
             }));
             this.items = dataWithIds;
-            console.log(dataWithIds);
             this.minisearch = new MiniSearch({
               fields: ['Nombre', 'Categoría'],
               storeFields: ['Nombre', 'Tipo', 'Capítulo', 'Categoría', 'Fuente', 'Enlace'],
 
             });
             this.minisearch.addAll(dataWithIds);
+          });
+
+          new TomSelect("#select-type",{
+            maxItems: 3,
+            plugins: {
+              remove_button:{
+                title:'Remove this item',
+              }
+            },
+          });
+          
+          new TomSelect("#select-chapter",{
+            plugins: {
+              remove_button:{
+                title:'Remove this item',
+              }
+            },
+          });
+          
+          new TomSelect("#select-tags",{
+            plugins: {
+              remove_button:{
+                title:'Remove this item',
+              }
+            },
           });
 
           const myModalEl = document.getElementById('myModal')
@@ -245,24 +294,6 @@
             title: item.title,
             embedSrc: item.Embed_src,
           };
-          /*
-          const modalBody = document.getElementById('modal-body');
-          modalBody.innerHTML = '';
-
-          // If the item provides an embed script (e.g., Infogram), inject it
-          if (iframeObject.embedSrc) {
-            // remove any previous embed with same id
-            const script = document.createElement('script');
-            script.type = 'text/javascript';
-            if (iframeObject.embedId) script.id = iframeObject.embedId;
-            if (iframeObject.title) script.title = iframeObject.title;
-            script.src = iframeObject.embedSrc;
-            modalBody.appendChild(script);
-          } 
-          this.iframeObject = iframeObject;
-          const modal = new bootstrap.Modal('#myModal');
-          modal.show();
-          */
           window.parent.postMessage({ action: "openModal", data: { 
             id: iframeObject.embedId, 
             src: iframeObject.embedSrc, 
@@ -270,16 +301,35 @@
           }, "*");
         },
         search(query) {
-          if (!query) {
-            return this.items;
-          }
-          console.log('Searching for:', query);
-          console.log(this.minisearch);
+          if (!query) return this.items;
+          
           return this.minisearch.search(query, { prefix: true });
         },
+        onChangeFilterType(event) {
+          console.log('Selected types:', this.filters.type);
+          console.log('Event target value:', event.target.value);
+          //this.page.currentPage = 1;
+        },
         get filteredItems() {
-          const results = this.search(this.query);
-          console.log(results);
+          let results = this.search(this.query);
+
+          // Filtro por Tipo
+          if (this.filters.type.length > 0) {
+            results = results.filter(item => this.filters.type.includes(item.Tipo));
+          }
+          // Filtro por Capítulo
+          if (this.filters.chapter.length > 0) {
+            results = results.filter(item => this.filters.chapter.includes(item.Capítulo));
+          }
+          // Filtro por Etiquetas
+          if (this.filters.tags.length > 0) {
+            results = results.filter(item => {
+              if (!item.Categoría) return false;
+              const itemTags = item.Categoría.split(',').map(tag => tag.trim());
+              return this.filters.tags.some(tag => itemTags.includes(tag));
+            });
+          }
+
           return results;
         },
         get totalPages() {
