@@ -16,28 +16,16 @@
 </head>
 
 <body>
-  <!-- <div id="app"></div> -->
-  <div class="container">
-    <div x-data="indicadores" class="bg-white">
+  <div class="container-fluid">
+    <div x-data="indicadores" >
 
       <head>
         <title>Estadísticas LBP</title>
       </head>
 
-      <div class="d-flex justify-content-between px-4">
-        <a href="https://mma.gob.cl/" target="_blank">
-          <img src="https://lineasdebasepublicas.mma.gob.cl/images/mma_logo.png" alt="LBP logo" class="img-fluid"
-            style="width: 130px; height: 122px;" />
-        </a>
-        <a class="align-self-center" href="https://sinia.mma.gob.cl/" target="_blank">
-          <img decoding="async" className="alignnone size-medium wp-image-2402 mb-0"
-            src="https://sinia.mma.gob.cl/wp-content/uploads/2022/07/logo-sinia.png" alt="Sinia" width="400"
-            srcSet="https://sinia.mma.gob.cl/wp-content/uploads/2022/07/logo-sinia.png 1500w, https://sinia.mma.gob.cl/wp-content/uploads/2022/07/logo-sinia-300x40.png 300w, https://sinia.mma.gob.cl/wp-content/uploads/2022/07/logo-sinia-1024x137.png 1024w, https://sinia.mma.gob.cl/wp-content/uploads/2022/07/logo-sinia-768x102.png 768w"
-            sizes="(max-width: 1500px) 100vw, 1500px" />
-        </a>
-      </div>
+      
 
-      <section class="container" id="capa-section">
+      <section id="capa-section">
           <!-- Filtros -->
           <div class="row">
             <div class="col-12 col-md-6">
@@ -50,10 +38,10 @@
                 </div>
               </div>
             </div>
-            <div class="col-12 col-md-2">
+            <div class="col-12 offset-0 offset-md-4 col-md-2">
               <div class="">
                 <label for="pageSizeSelect" class="form-label mb-0">Elementos por página:</label>
-                <select class="form-select" id="pageSizeSelect" x-model.number="page.pageSize" @change="page.currentPage = 1">
+                <select class="form-select w-50" id="pageSizeSelect" x-model.number="page.pageSize" @change="page.currentPage = 1">
                   <option value="5">5</option>
                   <option value="10">10</option>
                   <option value="15">15</option>
@@ -246,6 +234,7 @@
               title: '',
               embedSrc: '',
             };
+
           })
         },
         onClickIndicador(item) {
@@ -270,10 +259,14 @@
             script.src = iframeObject.embedSrc;
             modalBody.appendChild(script);
           } 
-          console.log('iframeObject:', iframeObject);
           this.iframeObject = iframeObject;
           const modal = new bootstrap.Modal('#myModal');
           modal.show();
+          window.parent.postMessage({ action: "openModal", data: { 
+            id: iframeObject.embedId, 
+            src: iframeObject.embedSrc, 
+            title: iframeObject.title} 
+          }, "*");
         },
         search(query) {
           if (!query) {
