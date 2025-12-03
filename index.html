@@ -225,6 +225,7 @@
 
           const myModalEl = document.getElementById('myModal')
           // Limpia el iframe al cerrar el modal
+          /*
           myModalEl.addEventListener('hidden.bs.modal', event => {
             this.iframeURL = '';
             document.getElementById(this.iframeObject.embedId)?.remove();
@@ -234,18 +235,17 @@
               title: '',
               embedSrc: '',
             };
-
           })
+            */
         },
         onClickIndicador(item) {
           this.iframeURL = item.Enlace;
-
-
           const iframeObject = {
             embedId: item.Embed_id,
             title: item.title,
             embedSrc: item.Embed_src,
           };
+          /*
           const modalBody = document.getElementById('modal-body');
           modalBody.innerHTML = '';
 
@@ -262,6 +262,7 @@
           this.iframeObject = iframeObject;
           const modal = new bootstrap.Modal('#myModal');
           modal.show();
+          */
           window.parent.postMessage({ action: "openModal", data: { 
             id: iframeObject.embedId, 
             src: iframeObject.embedSrc, 
