@@ -20,7 +20,7 @@
   <div class="container-fluid">
     <div x-data="indicadores" >
       <section id="capa-section">
-          <div class="row ">
+          <div class="row mt-2">
             <div class="col-12 col-md-6">
               <div class="input-group mb-4">
                 <span class="input-group-text">🔍</span>
@@ -65,7 +65,6 @@
               <span class="me-2 align-self-center fw-medium">Etiquetas:</span>
               <select id="select-tags" x-model="filters.tags" name="tags[]" multiple placeholder="Seleccione una Etiqueta..." autocomplete="off">
                 <option disabled>Seleccione una Etiqueta...</option>  
-                <!-- Clave, ODS, RETC, TSEJ -->
                 <option value="Clave">Clave</option>
                 <option value="ODS">ODS</option>
                 <option value="RETC">RETC</option>
@@ -76,39 +75,45 @@
 
           <div class="row gy-4" id="indicadores-lista">
             <template x-for="(item, k) in filteredItems.slice((page.currentPage - 1) * page.pageSize, page.currentPage * page.pageSize)" :key="`indicador_panel_${k}`">
-              <div class="col-12 col-md-6 d-flex">
+              <div class="col-12 d-flex">
                 <div class="card h-100 w-100 bg-light border-secondary">
                   <div class="card-body d-flex flex-column">
-                    <h4 class="card-title" x-text="item.Nombre"></h4>
-                        <div class="mb-2 flex-grow-1">
+                      <div class="row">
+                        <h5 class="card-title col" x-text="item.Nombre"></h5>
+                        <a href="#" class="col-auto btn btn-success" @click="onClickIndicador(item)"><i class="bi bi-box-arrow-up-right"></i> Ver</a>
+                      </div>
+                        <div class="">
                           <div class="row">
                             <div class="col">
-                              <div class="d-flex flex-row">
-                                <span :class="iconMap[item.Tipo]"></span>
-                                <p x-text="item.Tipo" class="ms-2 mb-0 fs-7"> </p>
-                              </div>
                               <div class="d-flex flex-row">
                                 <span :class="iconMap[item.Capítulo]"></span>
                                 <p x-text="item.Capítulo" class="ms-2 mb-0 fs-7"> </p>
                               </div>
-                            <div>
+                            </div>
+                            <!-- <div class="col">
+                              <div class="d-flex flex-row">
+                                <span :class="iconMap[item.Tipo]"></span>
+                                <p x-text="item.Tipo" class="ms-2 mb-0 fs-7"> </p>
+                              </div>
+                            </div> -->
+                            
                           </div>
 
                         </div>
-                      </div>
                     </div>
+                  </div>
 
-                    <div class="d-flex flex-row align-items-center">
+                    <!-- <div class="d-flex flex-row align-items-center">
                       <span class="bi bi-tags-fill"></span>
                       <template x-for="(cat, i) in (item.Categoría || '').split(',')" :key="`cat_${i}`">
                         <span :class="`badge rounded-pill text-bg-${['success','danger','warning','info'][i % 4]} mx-1 my-1`" x-text="cat.trim()"></span>
                       </template>
-                    </div>
+                    </div> -->
 
-                    <div class="mt-1">
+                    <!-- <div class="mt-1">
                       <button type="button" class="btn btn-sm btn-success w-100" @click="onClickIndicador(item)">Ver
                         Indicador</button>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
               </div>
@@ -164,7 +169,7 @@
   <script src="https://cdn.jsdelivr.net/npm/tom-select@2.4.3/dist/js/tom-select.complete.min.js"></script>
 
   <script>
-       const EXCEL_URL = '/Modelo.xlsx';
+    const EXCEL_URL = '/Modelo.xlsx';
 
     async function loadXlsx(url) {
       /* perform network request */
@@ -241,7 +246,7 @@
             this.items = dataWithIds;
             this.minisearch = new MiniSearch({
               fields: ['Nombre', 'Categoría'],
-              storeFields: ['Nombre', 'Tipo', 'Capítulo', 'Categoría', 'Fuente', 'Enlace'],
+              storeFields: ['Nombre', 'Tipo', 'Capítulo', 'Categoría', 'Fuente', 'Enlace', 'Embed_id', 'Embed_src', 'title'],
 
             });
             this.minisearch.addAll(dataWithIds);
@@ -271,21 +276,6 @@
               }
             },
           });
-
-          const myModalEl = document.getElementById('myModal')
-          // Limpia el iframe al cerrar el modal
-          /*
-          myModalEl.addEventListener('hidden.bs.modal', event => {
-            this.iframeURL = '';
-            document.getElementById(this.iframeObject.embedId)?.remove();
-            document.querySelectorAll('script[src*="infogram.com"]').forEach(el => el.remove());
-            this.iframeObject = {
-              embedId: '',
-              title: '',
-              embedSrc: '',
-            };
-          })
-            */
         },
         onClickIndicador(item) {
           this.iframeURL = item.Enlace;
@@ -294,6 +284,7 @@
             title: item.title,
             embedSrc: item.Embed_src,
           };
+          console.log('iframeObject:', iframeObject);
           window.parent.postMessage({ action: "openModal", data: { 
             id: iframeObject.embedId, 
             src: iframeObject.embedSrc, 
