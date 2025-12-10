@@ -34,7 +34,6 @@
             <div class="col-12 offset-0 offset-md-4 col-md-2">
               <label for="pageSizeSelect" class="form-label fw-medium mb-0 fs-7">Elementos por página:</label>
               <select class="form-select w-75" id="pageSizeSelect" x-model.number="page.pageSize" @change="page.currentPage = 1">
-                <option value="5">5</option>
                 <option value="10">10</option>
                 <option value="15">15</option>
                 <option value="20">20</option>
@@ -78,9 +77,9 @@
               <div class="col-12 d-flex">
                 <div class="card h-100 w-100 bg-light border-secondary">
                   <div class="card-body d-flex flex-column">
-                      <div class="row">
-                        <h5 class="card-title col" x-text="item.Nombre"></h5>
-                        <a href="#" class="col-auto btn btn-success" @click="onClickIndicador(item)"><i class="bi bi-box-arrow-up-right"></i> Ver</a>
+                      <div class="row justify-content-between">
+                        <h5 class="card-title col-10" x-text="item.Nombre"></h5>
+                        <a href="#" class="col-auto btn btn-success h-min" @click="onClickIndicador(item)"><i class="bi bi-box-arrow-up-right"></i> Ver</a>
                       </div>
                         <div class="">
                           <div class="row">
@@ -228,7 +227,7 @@
         },
         page: {
           currentPage: 1,
-          pageSize: 5,
+          pageSize: 10,
         },
         async getXlsxData() {
           const workbook = await loadXlsx(EXCEL_URL);
