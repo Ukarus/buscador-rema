@@ -62,6 +62,15 @@
                 <option value="TSEJ">TSEJ</option>
               </select>
             </div>
+            <div class="col d-flex flex-column flex-wrap">
+              <span class="me-2 align-self-start fw-medium">Fuentes:</span>
+              <select id="select-sources" x-model="filters.sources" name="sources[]" multiple placeholder="Seleccione una Fuente..." autocomplete="off">
+                <option disabled>Seleccione una Fuente...</option>  
+                <template x-for="(source, index) in sources" :key="`source_option_${index}`">
+                  <option :value="source" x-text="source"></option>
+                </template>
+              </select>
+            </div>
           </div>
 
           <div class="my-2" >
@@ -195,10 +204,12 @@
           title: '',
           embedSrc: '',
         },
+        sources: [],
         filters: {
           type: [],
           chapter: [],
           tags: [],
+          source: []
         },
         iconMap: {
           'Mapa': 'bi bi-map',
@@ -224,6 +235,24 @@
               ...item
             }));
             this.items = dataWithIds;
+            
+            const selectSources = new TomSelect("#select-sources",{
+              plugins: {
+                remove_button:{
+                  title:'Remove this item',
+                }
+              },
+            });
+            const sources = [...new Set(dataWithIds.map(item => item.Fuente).filter(Boolean))];
+            console.log('Available sources:', sources);
+            this.sources = sources;
+
+            sources.forEach(source => {
+              selectSources.addOption({ value: source, text: source });
+            });
+
+
+
             this.minisearch = new MiniSearch({
               fields: ['Nombre', 'Categoría'],
               storeFields: ['Nombre', 'Tipo', 'Capítulo', 'Categoría', 'Fuente', 'Enlace', 'Embed_id', 'Embed_src', 'title'],
@@ -256,6 +285,7 @@
               }
             },
           });
+         
         },
         onClickIndicador(item) {
           this.iframeURL = item.Enlace;
@@ -299,6 +329,11 @@
               const itemTags = item.Categoría.split(',').map(tag => tag.trim());
               return this.filters.tags.some(tag => itemTags.includes(tag));
             });
+          }
+
+          // Filtro por Fuente
+          if (this.filters.source.length > 0) {
+            results = results.filter(item => this.filters.source.includes(item.Fuente));
           }
 
           return results;
