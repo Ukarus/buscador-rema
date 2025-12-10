@@ -21,3 +21,13 @@
 .h-min {
     height: min-content !important;
 }
+
+.card {
+    --bs-card-spacer-y: 0.75rem;
+    --bs-card-spacer-x: 0.75rem;
+    --bs-card-title-spacer-y: 0.25rem;
+}
+
+.mn-w75 {
+    min-width: 75px;
+}
