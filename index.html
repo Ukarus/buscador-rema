@@ -37,7 +37,7 @@
           <!-- Filtros -->
           <div class="row" >
             <div class="col d-flex flex-column flex-wrap">
-              <span class="me-2 align-self-start fw-medium">Tipo:</span>
+              <span class="me-2 align-self-start fs-7 fw-medium">Tipo:</span>
               <select id="select-type" x-model="filters.type" @change="onChangeFilterType" name="type[]" multiple placeholder="Seleccione un Tipo..." autocomplete="off">
                 <option disabled>Seleccione un Tipo...</option>  
                 <option value="Mapa">Mapa</option>
@@ -46,14 +46,14 @@
               </select>
             </div>
             <div class="col d-flex flex-column flex-wrap">
-              <span class="me-2 align-self-start fw-medium">Capítulo:</span>
+              <span class="me-2 align-self-start fs-7 fw-medium">Capítulo:</span>
               <select id="select-chapter" x-model="filters.chapter" name="chapter[]" multiple placeholder="Seleccione un Capítulo..." autocomplete="off">
                 <option disabled>Seleccione un Capítulo...</option>  
                 <option value="Economía Circular">Economía Circular</option>
               </select>
             </div>
             <div class="col d-flex flex-column flex-wrap">
-              <span class="me-2 align-self-start fw-medium">Etiquetas:</span>
+              <span class="me-2 align-self-start fs-7 fw-medium">Etiquetas:</span>
               <select id="select-tags" x-model="filters.tags" name="tags[]" multiple placeholder="Seleccione una Etiqueta..." autocomplete="off">
                 <option disabled>Seleccione una Etiqueta...</option>  
                 <option value="Clave">Clave</option>
@@ -63,7 +63,7 @@
               </select>
             </div>
             <div class="col d-flex flex-column flex-wrap">
-              <span class="me-2 align-self-start fw-medium">Fuentes:</span>
+              <span class="me-2 align-self-start fs-7 fw-medium">Fuentes:</span>
               <select id="select-sources" x-model="filters.sources" name="sources[]" multiple placeholder="Seleccione una Fuente..." autocomplete="off">
                 <option disabled>Seleccione una Fuente...</option>  
                 <template x-for="(source, index) in sources" :key="`source_option_${index}`">
@@ -76,7 +76,7 @@
           <div class="my-2" >
             <div class="d-flex flex-column justify-content-end">
               <label for="pageSizeSelect" class="form-label fw-medium mb-0 fs-7 align-self-end">Elementos por página</label>
-              <select class="form-select w-75 mn-w75 align-self-end" style="max-width: 128px;" id="pageSizeSelect" x-model.number="page.pageSize" @change="page.currentPage = 1">
+              <select class="form-select w-75 mn-w75 align-self-end" style="max-width: 64px;" id="pageSizeSelect" x-model.number="page.pageSize" @change="page.currentPage = 1">
                 <option value="10">10</option>
                 <option value="15">15</option>
                 <option value="20">20</option>
@@ -92,8 +92,8 @@
                 <div class="card h-100 w-100 bg-light border-secondary">
                   <div class="card-body d-flex flex-column">
                       <div class="d-flex flex-row justify-content-between">
-                        <div>
-                          <h6 class="card-title col-10" x-text="item.Nombre"></h6>
+                        <div class="me-2">
+                          <h6 class="card-title fs-7" x-text="item.Nombre"></h6>
                           <div class="d-flex flex-row">
                             <span :class="iconMap[item.Capítulo]"></span>
                             <p x-text="item.Capítulo" class="ms-2 mb-0 fs-7"> </p>

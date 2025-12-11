@@ -15,7 +15,7 @@
 }
 
 .fs-7 {
-    font-size: 0.875rem !important;
+    font-size: 0.8rem !important;
 }
 
 .h-min {
@@ -23,8 +23,8 @@
 }
 
 .card {
-    --bs-card-spacer-y: 0.75rem;
-    --bs-card-spacer-x: 0.75rem;
+    --bs-card-spacer-y: 0.7rem;
+    --bs-card-spacer-x: 0.7rem;
     --bs-card-title-spacer-y: 0.25rem;
 }
 
