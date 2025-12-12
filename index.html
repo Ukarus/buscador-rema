@@ -47,27 +47,20 @@
             </div>
             <div class="col d-flex flex-column flex-wrap">
               <span class="me-2 align-self-start fs-7 fw-medium">Capítulo:</span>
-              <select id="select-chapter" x-model="filters.chapter" name="chapter[]" multiple placeholder="Seleccione un Capítulo..." autocomplete="off">
+              <select id="select-chapter" x-model="filters.chapter" @change="onChangeFilterType" name="chapter[]" multiple placeholder="Seleccione un Capítulo..." autocomplete="off">
                 <option disabled>Seleccione un Capítulo...</option>  
               </select>
             </div>
             <div class="col d-flex flex-column flex-wrap">
               <span class="me-2 align-self-start fs-7 fw-medium">Etiquetas:</span>
-              <select id="select-tags" x-model="filters.tags" name="tags[]" multiple placeholder="Seleccione una Etiqueta..." autocomplete="off">
+              <select id="select-tags" x-model="filters.tags" @change="onChangeFilterType" name="tags[]" multiple placeholder="Seleccione una Etiqueta..." autocomplete="off">
                 <option disabled>Seleccione una Etiqueta...</option>  
-                <!-- <option value="Clave">Clave</option>
-                <option value="ODS">ODS</option>
-                <option value="RETC">RETC</option>
-                <option value="TSEJ">TSEJ</option> -->
               </select>
             </div>
             <div class="col d-flex flex-column flex-wrap">
               <span class="me-2 align-self-start fs-7 fw-medium">Fuentes:</span>
-              <select id="select-sources" x-model="filters.sources" name="sources[]" multiple placeholder="Seleccione una Fuente..." autocomplete="off">
-                <option disabled>Seleccione una Fuente...</option>  
-                <!-- <template x-for="(source, index) in sources" :key="`source_option_${index}`">
-                  <option :value="source" x-text="source"></option>
-                </template> -->
+              <select id="select-sources" x-model="filters.sources" @change="onChangeFilterType" name="sources[]" multiple placeholder="Seleccione una Fuente..." autocomplete="off">
+                <option disabled>Seleccione una Fuente...</option>
               </select>
             </div>
           </div>
@@ -315,12 +308,12 @@
         search(query) {
           if (!query) return this.items;
 
+          this.page.currentPage = 1;
+
           return this.minisearch.search(query, { prefix: true });
         },
         onChangeFilterType(event) {
-          console.log('Selected types:', this.filters.type);
-          console.log('Event target value:', event.target.value);
-          //this.page.currentPage = 1;
+          this.page.currentPage = 1;
         },
         get filteredItems() {
           let results = this.search(this.query);
