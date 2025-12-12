@@ -107,6 +107,7 @@
             </template>
           </div>
 
+          <!-- Paginador -->
           <div class="row">
             <div class="col-12 d-flex justify-content-center my-4">
               <nav aria-label="Page navigation example">
@@ -116,9 +117,9 @@
                       <i class="bi bi-chevron-double-left"></i>
                     </a>
                   </li>
-                  <template x-for="pageNum in totalPages" :key="pageNum">
-                    <li class="page-item" :class="{ active: page.currentPage === pageNum }">
-                      <a class="page-link" href="#" @click.prevent="page.currentPage = pageNum" x-text="pageNum"></a>
+                  <template x-for="(pageNum, index) in displayPages" :key="`page_${index}`">
+                    <li class="page-item" :class="{ active: page.currentPage === pageNum, disabled: pageNum === '...' }">
+                      <a class="page-link" href="#" @click.prevent="if(pageNum !== '...') page.currentPage = pageNum" x-text="pageNum"></a>
                     </li>
                   </template>
                   <li class="page-item" :class="{ disabled: page.currentPage >= totalPages }">
@@ -296,13 +297,14 @@
             title: item.title,
             embedSrc: item.Embed_src,
           };
-          
+          /*
           if (!iframeObject.embedSrc) {
             const modalBody = document.getElementById('modal-body');
             modalBody.innerHTML = `<iframe src="${item["Visualización Infogram"]}" style="width: 100%; height: 500px; border: none;"></iframe>`;
             const modal = new bootstrap.Modal(document.getElementById('myModal'));
             modal.show();
           }
+          */
           window.parent.postMessage({ action: "openModal", data: { 
             id: iframeObject.embedId, 
             src: iframeObject.embedSrc, 
@@ -349,6 +351,57 @@
         },
         get totalPages() {
           return Math.ceil(this.filteredItems.length / this.page.pageSize);
+        },
+        get displayPages() {
+          const total = this.totalPages;
+          const current = this.page.currentPage;
+
+          if (total === 0) return [];
+
+          // Siempre incluir primera y última
+          const first = 1;
+          const last = total;
+
+          // Si hay pocas páginas, mostrar todas
+          if (total <= 7) {
+            return Array.from({ length: total }, (_, i) => i + 1);
+          }
+
+          const pages = [first];
+
+          // Bloque medio dinámico alrededor de la página actual
+          // Mostrar hasta 2 vecinos: current-1, current, current+1
+          const middleStart = Math.max(2, current - 1);
+          const middleEnd = Math.min(last - 1, current + 1);
+
+          // Si el bloque medio queda pegado al inicio, garantizar primeras 3
+          if (current <= 3) {
+            // primeras 3
+            pages.push(2, 3);
+            // separador si hay distancia al final
+            if (last - 3 > 2) pages.push('...');
+          } else {
+            // separador desde el inicio si hay salto
+            if (middleStart > 2) pages.push('...');
+            for (let i = middleStart; i <= middleEnd; i++) pages.push(i);
+            // separador hacia el final si hay salto
+            if (middleEnd < last - 2) pages.push('...');
+          }
+
+          // Siempre incluir las dos últimas páginas
+          pages.push(last - 1, last);
+
+          // Deduplicar en caso de solapamientos y mantener orden
+          const seen = new Set();
+          const ordered = [];
+          for (const p of pages) {
+            const key = String(p);
+            if (!seen.has(key)) {
+              seen.add(key);
+              ordered.push(p);
+            }
+          }
+          return ordered;
         },
 
       }));
