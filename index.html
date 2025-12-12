@@ -49,26 +49,25 @@
               <span class="me-2 align-self-start fs-7 fw-medium">Capítulo:</span>
               <select id="select-chapter" x-model="filters.chapter" name="chapter[]" multiple placeholder="Seleccione un Capítulo..." autocomplete="off">
                 <option disabled>Seleccione un Capítulo...</option>  
-                <option value="Economía Circular">Economía Circular</option>
               </select>
             </div>
             <div class="col d-flex flex-column flex-wrap">
               <span class="me-2 align-self-start fs-7 fw-medium">Etiquetas:</span>
               <select id="select-tags" x-model="filters.tags" name="tags[]" multiple placeholder="Seleccione una Etiqueta..." autocomplete="off">
                 <option disabled>Seleccione una Etiqueta...</option>  
-                <option value="Clave">Clave</option>
+                <!-- <option value="Clave">Clave</option>
                 <option value="ODS">ODS</option>
                 <option value="RETC">RETC</option>
-                <option value="TSEJ">TSEJ</option>
+                <option value="TSEJ">TSEJ</option> -->
               </select>
             </div>
             <div class="col d-flex flex-column flex-wrap">
               <span class="me-2 align-self-start fs-7 fw-medium">Fuentes:</span>
               <select id="select-sources" x-model="filters.sources" name="sources[]" multiple placeholder="Seleccione una Fuente..." autocomplete="off">
                 <option disabled>Seleccione una Fuente...</option>  
-                <template x-for="(source, index) in sources" :key="`source_option_${index}`">
+                <!-- <template x-for="(source, index) in sources" :key="`source_option_${index}`">
                   <option :value="source" x-text="source"></option>
-                </template>
+                </template> -->
               </select>
             </div>
           </div>
@@ -83,7 +82,6 @@
                 <option value="50">50</option>
               </select>
             </div>
-
           </div>
 
           <div class="row gy-4" id="indicadores-lista">
@@ -136,7 +134,7 @@
 
 
       <div class="modal modal-lg" id="myModal" tabindex="-1">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-body justify-content-center" id="modal-body">
             </div>
@@ -158,7 +156,7 @@
   <script src="https://cdn.jsdelivr.net/npm/tom-select@2.4.3/dist/js/tom-select.complete.min.js"></script>
 
   <script>
-    const EXCEL_URL = '/Modelo.xlsx';
+    const EXCEL_URL = '/Buscador de indicadores_11_12_2025.xlsx';
 
     async function loadXlsx(url) {
       /* perform network request */
@@ -204,7 +202,6 @@
           title: '',
           embedSrc: '',
         },
-        sources: [],
         filters: {
           type: [],
           chapter: [],
@@ -244,14 +241,36 @@
               },
             });
             const sources = [...new Set(dataWithIds.map(item => item.Fuente).filter(Boolean))];
-            console.log('Available sources:', sources);
-            this.sources = sources;
 
             sources.forEach(source => {
               selectSources.addOption({ value: source, text: source });
             });
 
+            const chapterSelect = new TomSelect("#select-chapter",{
+              plugins: {
+                remove_button:{
+                  title:'Remove this item',
+                }
+              },
+            });
 
+            const chapters = [...new Set(dataWithIds.map(item => item.Capítulo).filter(Boolean))];
+            chapters.forEach(chapter => {
+              chapterSelect.addOption({ value: chapter, text: chapter });
+            });
+
+            const tagsSelect = new TomSelect("#select-tags", {
+              plugins: {
+                remove_button:{
+                  title:'Remove this item',
+                }
+              },
+            });
+
+            const tags = [...new Set(dataWithIds.map(item => item["Categoría"]).filter(Boolean))];
+            tags.forEach(tag => {
+              tagsSelect.addOption({ value: tag, text: tag });
+            });
 
             this.minisearch = new MiniSearch({
               fields: ['Nombre', 'Categoría'],
@@ -269,23 +288,6 @@
               }
             },
           });
-          
-          new TomSelect("#select-chapter",{
-            plugins: {
-              remove_button:{
-                title:'Remove this item',
-              }
-            },
-          });
-          
-          new TomSelect("#select-tags",{
-            plugins: {
-              remove_button:{
-                title:'Remove this item',
-              }
-            },
-          });
-         
         },
         onClickIndicador(item) {
           this.iframeURL = item.Enlace;
@@ -294,16 +296,23 @@
             title: item.title,
             embedSrc: item.Embed_src,
           };
-          console.log('iframeObject:', iframeObject);
+          
+          if (!iframeObject.embedSrc) {
+            const modalBody = document.getElementById('modal-body');
+            modalBody.innerHTML = `<iframe src="${item["Visualización Infogram"]}" style="width: 100%; height: 500px; border: none;"></iframe>`;
+            const modal = new bootstrap.Modal(document.getElementById('myModal'));
+            modal.show();
+          }
           window.parent.postMessage({ action: "openModal", data: { 
             id: iframeObject.embedId, 
             src: iframeObject.embedSrc, 
-            title: iframeObject.title} 
-          }, "*");
+            title: iframeObject.title,
+            url: item["Visualización Infogram"] 
+          }}, "*");
         },
         search(query) {
           if (!query) return this.items;
-          
+
           return this.minisearch.search(query, { prefix: true });
         },
         onChangeFilterType(event) {
