@@ -77,7 +77,7 @@
             </div>
           </div>
 
-          <div class="row gy-4" id="indicadores-lista">
+          <div class="row gy-2" id="indicadores-lista">
             <template x-for="(item, k) in filteredItems.slice((page.currentPage - 1) * page.pageSize, page.currentPage * page.pageSize)" :key="`indicador_panel_${k}`">
               <div class="col-12 d-flex">
                 <div class="card h-100 w-100 bg-light border-secondary">
@@ -86,8 +86,8 @@
                         <div class="me-2">
                           <h6 class="card-title fs-7" x-text="item.Nombre"></h6>
                           <div class="d-flex flex-row">
-                            <span :class="iconMap[item.Capítulo]"></span>
-                            <p x-text="item.Capítulo" class="ms-2 mb-0 fs-7"> </p>
+                            <!-- <span :class="iconMap[item.Capítulo]"></span> -->
+                            <p class="mb-0 fs-7 fw-bold">Capítulo: <span class="fw-normal" x-text="item.Capítulo"></span></p>
                           </div>
                         </div>
                         <a href="#" class="col-auto btn btn-success h-min align-self-center" @click="onClickIndicador(item)"><i class="bi bi-box-arrow-up-right"></i> Ver</a>
@@ -200,7 +200,7 @@
           type: [],
           chapter: [],
           tags: [],
-          source: []
+          sources: []
         },
         iconMap: {
           'Mapa': 'bi bi-map',
@@ -336,8 +336,8 @@
           }
 
           // Filtro por Fuente
-          if (this.filters.source.length > 0) {
-            results = results.filter(item => this.filters.source.includes(item.Fuente));
+          if (this.filters.sources.length > 0) {
+            results = results.filter(item => this.filters.sources.includes(item.Fuente));
           }
 
           return results;
