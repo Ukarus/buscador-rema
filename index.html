@@ -268,7 +268,7 @@
 
             this.minisearch = new MiniSearch({
               fields: ['Nombre', 'Categoría'],
-              storeFields: ['Nombre', 'Tipo', 'Capítulo', 'Categoría', 'Fuente', 'Enlace', 'Embed_id', 'Embed_src', 'title'],
+              storeFields: ['Nombre', 'Tipo', 'Capítulo', 'Categoría', 'Fuente', 'Visualización Infogram', 'Embed_id', 'Embed_src', 'title'],
 
             });
             this.minisearch.addAll(dataWithIds);
@@ -289,6 +289,7 @@
             embedId: item.Embed_id,
             title: item.title,
             embedSrc: item.Embed_src,
+            url: item["Visualización Infogram"] 
           };
           /*
           if (!iframeObject.embedSrc) {
@@ -298,12 +299,7 @@
             modal.show();
           }
           */
-          window.parent.postMessage({ action: "openModal", data: { 
-            id: iframeObject.embedId, 
-            src: iframeObject.embedSrc, 
-            title: iframeObject.title,
-            url: item["Visualización Infogram"] 
-          }}, "*");
+          window.parent.postMessage({ action: "openModal", data: iframeObject}, "*");
         },
         search(query) {
           if (!query) return this.items;
