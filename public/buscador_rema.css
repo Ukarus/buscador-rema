@@ -31,3 +31,24 @@
 .mn-w75 {
     min-width: 75px;
 }
+
+#capa-section {
+    .btn-success {
+        --bs-btn-bg: #9ec451;
+        --bs-btn-border-color: #9ec451;
+        --bs-btn-hover-bg: #8bb237;
+        --bs-btn-hover-border-color: #8bb237;
+    }
+    .pagination {
+        --bs-pagination-active-color: #ffffff;
+        --bs-pagination-active-bg: #9ec451;
+        --bs-pagination-active-border-color: #9ec451;
+        --bs-pagination-color: #9ec451;
+        --bs-pagination-hover-color: #8bb237;
+    }
+    
+}
+
+body {
+    --bs-body-font-family: 'Roboto', sans-serif;
+}
