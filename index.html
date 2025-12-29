@@ -43,9 +43,9 @@
               <span class="me-2 align-self-start fs-7 fw-medium">Tipo:</span>
               <select id="select-type" x-model="filters.type" @change="onChangeFilterType" name="type[]" multiple placeholder="Seleccione un Tipo..." autocomplete="off">
                 <option disabled>Seleccione un Tipo...</option>  
+                <option value="Indicador">Indicador</option>
                 <option value="Mapa">Mapa</option>
                 <option value="Texto">Texto</option>
-                <option value="Indicador">Indicador</option>
               </select>
             </div>
             <div class="col d-flex flex-column flex-wrap">
@@ -56,7 +56,7 @@
             </div>
             <div class="col d-flex flex-column flex-wrap">
               <span class="me-2 align-self-start fs-7 fw-medium">Etiquetas:</span>
-              <select id="select-tags" x-model="filters.tags" @change="onChangeFilterType" name="tags[]" multiple placeholder="Seleccione una Etiqueta..." autocomplete="off">
+              <select id="select-tags" x-model="filters.tags" disabled @change="onChangeFilterType" name="tags[]" multiple placeholder="Seleccione una Etiqueta..." autocomplete="off">
                 <option disabled>Seleccione una Etiqueta...</option>  
               </select>
             </div>
@@ -238,7 +238,7 @@
               },
             });
             const sources = [...new Set(dataWithIds.map(item => item.Fuente).filter(Boolean))];
-
+            sources.sort();
             sources.forEach(source => {
               selectSources.addOption({ value: source, text: source });
             });
@@ -252,6 +252,7 @@
             });
 
             const chapters = [...new Set(dataWithIds.map(item => item.Capítulo).filter(Boolean))];
+            chapters.sort();
             chapters.forEach(chapter => {
               chapterSelect.addOption({ value: chapter, text: chapter });
             });
