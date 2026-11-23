@@ -36,13 +36,13 @@
             </div>
 
           </div>
-          
+
           <!-- Filtros -->
           <div class="row" >
             <div class="col d-flex flex-column flex-wrap">
               <span class="me-2 align-self-start fs-7 fw-medium">Tipo:</span>
               <select id="select-type" x-model="filters.type" @change="onChangeFilterType" name="type[]" multiple placeholder="Seleccione un Tipo..." autocomplete="off">
-                <option disabled>Seleccione un Tipo...</option>  
+                <option disabled>Seleccione un Tipo...</option>
                 <option value="Indicador">Indicador</option>
                 <option value="Mapa">Mapa</option>
                 <option value="Texto">Texto</option>
@@ -51,13 +51,13 @@
             <div class="col d-flex flex-column flex-wrap">
               <span class="me-2 align-self-start fs-7 fw-medium">Capítulo:</span>
               <select id="select-chapter" x-model="filters.chapter" @change="onChangeFilterType" name="chapter[]" multiple placeholder="Seleccione un Capítulo..." autocomplete="off">
-                <option disabled>Seleccione un Capítulo...</option>  
+                <option disabled>Seleccione un Capítulo...</option>
               </select>
             </div>
             <div class=" col d-none flex-column flex-wrap ">
               <span class="me-2 align-self-start fs-7 fw-medium">Etiquetas:</span>
               <select id="select-tags" x-model="filters.tags" disabled @change="onChangeFilterType" name="tags[]" multiple placeholder="Seleccione una Etiqueta..." autocomplete="off">
-                <option disabled>Seleccione una Etiqueta...</option>  
+                <option disabled>Seleccione una Etiqueta...</option>
               </select>
             </div>
             <div class="col d-flex flex-column flex-wrap">
@@ -153,7 +153,12 @@
   <script src="https://cdn.jsdelivr.net/npm/tom-select@2.4.3/dist/js/tom-select.complete.min.js"></script>
 
   <script>
-    const EXCEL_URL = '/api/catalogo-s3';
+
+    // Customizar la url del excel donde se leen los indicadores
+    // De esta forma es posible reutilizar por año
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const EXCEL_URL = urlParams.has('excel_url') ? urlParams.get('excel_url') : '/api/catalogo-s3';
 
     async function loadXlsx(url) {
       /* perform network request */
@@ -186,7 +191,6 @@
         throw new Error(`Data Error: ${e.message}`);
       }
     }
-
 
     document.addEventListener('alpine:init', () => {
       Alpine.data('indicadores', () => ({
@@ -229,7 +233,7 @@
               ...item
             }));
             this.items = dataWithIds;
-            
+
             const selectSources = new TomSelect("#select-sources",{
               plugins: {
                 remove_button:{
@@ -250,6 +254,7 @@
                 }
               },
             });
+
 
             const chapters = [...new Set(dataWithIds.map(item => item.Capítulo).filter(Boolean))];
             chapters.sort();
@@ -273,7 +278,6 @@
             this.minisearch = new MiniSearch({
               fields: ['Nombre', 'Categoría'],
               storeFields: ['Nombre', 'Tipo', 'Capítulo', 'Categoría', 'Fuente', 'Visualización Infogram', 'Embed_id', 'Embed_src', 'title'],
-
             });
             this.minisearch.addAll(dataWithIds);
           });
@@ -293,7 +297,7 @@
             embedId: item.Embed_id,
             title: item.title,
             embedSrc: item.Embed_src,
-            url: item["Visualización Infogram"] 
+            url: item["Visualización Infogram"]
           };
           /*
           if (!iframeObject.embedSrc) {
